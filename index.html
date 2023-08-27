@@ -4,26 +4,19 @@
     <title>Home</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+
     <script src="//unpkg.com/alpinejs" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+
     <script type="module" src="script.js"></script>
   </head>
-  <style>
-    .container {
-      padding: 0.2em;
-      margin: 1em;
-      display: flex;
-      justify-content: space-around;
-    }
-    td {
-      width: 100em;
-      border: 1px groove blue;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+  <style></style>
   <body>
-    <main>
-      <div x-data="{ text: '',baseValue:1,offsetValue:0.0,listP:[],listN:[] }">
+    <main class="container">
+      <div x-data="{ text: '',baseValue:0,offsetValue:0.0,listP:[],listN:[] }">
         <input
           type="text"
           style="padding: 0.4em; border-radius: 0.4em"
@@ -44,30 +37,35 @@
           "
           style="padding: 0.4em; border-radius: 0.4em"
         >
-          Calculate
+          Calculate Value
         </button>
-
-        <p style="margin: 1em auto; width: 500px">
-          Base Value: <span x-text="baseValue"></span>
-        </p>
-        <div class="container">
+        <h4 style="margin: 1em auto; text-align: center">
+          Base Value: <span x-text="baseValue.toFixed(10)"></span>
+        </h4>
+        <div style="display: flex; margin: 0 auto">
           <table>
             <tr>
-              <td>+ BaseValue</td>
+              <th style="font-weight: bold; text-align: center">+ BaseValue</th>
             </tr>
             <template x-for="record in listP">
               <tr>
-                <td width="100" x-text="record.toFixed(14)"></td>
+                <td
+                  style="color: indigo; text-align: center"
+                  x-text="record.toFixed(10)"
+                ></td>
               </tr>
             </template>
           </table>
           <table>
             <tr>
-              <td>- BaseValue</td>
+              <th style="font-weight: bold; text-align: center">- BaseValue</th>
             </tr>
             <template x-for="record in listN">
               <tr>
-                <td width="100" x-text="record.toFixed(14)"></td>
+                <td
+                  style="color: indigo; text-align: center"
+                  x-text="record.toFixed(10)"
+                ></td>
               </tr>
             </template>
           </table>
@@ -76,6 +74,3 @@
     </main>
   </body>
 </html>
-
-
-
