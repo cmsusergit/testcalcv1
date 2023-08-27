@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script type="module" src="script.js"></script>
+  </head>
+  <style>
+    .container {
+      padding: 0.2em;
+      margin: 1em;
+      display: flex;
+      justify-content: space-around;
+    }
+    td {
+      width: 100em;
+      border: 1px groove blue;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <main>
+      <div x-data="{ text: '',baseValue:1,offsetValue:0.0,listP:[],listN:[] }">
+        <input
+          type="text"
+          style="padding: 0.4em; border-radius: 0.4em"
+          x-model="text"
+        />
+        <button
+          @click="v1=Number(text);baseValue=v1/(50+10);
+          listP=[];listN=[];
+          let temp1=baseValue;
+          let temp2=baseValue;
+          offsetValue=v1/((40-4)*1000);
+          for(let indx=0;indx<11;indx++){
+            temp1=temp1+offsetValue;
+            temp2=temp2-offsetValue;
+            listP.push(temp1);
+            listN.push(temp2);
+          }
+          "
+          style="padding: 0.4em; border-radius: 0.4em"
+        >
+          Calculate
+        </button>
+
+        <p style="margin: 1em auto; width: 500px">
+          Base Value: <span x-text="baseValue"></span>
+        </p>
+        <div class="container">
+          <table>
+            <tr>
+              <td>+ BaseValue</td>
+            </tr>
+            <template x-for="record in listP">
+              <tr>
+                <td width="100" x-text="record.toFixed(14)"></td>
+              </tr>
+            </template>
+          </table>
+          <table>
+            <tr>
+              <td>- BaseValue</td>
+            </tr>
+            <template x-for="record in listN">
+              <tr>
+                <td width="100" x-text="record.toFixed(14)"></td>
+              </tr>
+            </template>
+          </table>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
+
+
