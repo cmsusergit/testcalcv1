@@ -28,7 +28,7 @@
           let temp1=baseValue;
           let temp2=baseValue;
           offsetValue=v1/((40-4)*1000);
-          for(let indx=0;indx<11;indx++){
+          for(let indx=0;indx<12;indx++){
             temp1=temp1+offsetValue;
             temp2=temp2-offsetValue;
             listP.push(temp1);
@@ -65,6 +65,37 @@
                 <td
                   style="color: indigo; text-align: center"
                   x-text="record.toFixed(10)"
+                ></td>
+              </tr>
+            </template>
+          </table>
+        </div>
+        <h4 style="margin: 1em auto; text-align: center">
+          Base Value: <span x-text="(baseValue*(50*10)).toFixed(10)"></span>
+        </h4>
+        <div style="display: flex; margin: 0 auto">
+          <table>
+            <tr>
+              <th style="font-weight: bold; text-align: center">+ BaseValue</th>
+            </tr>
+            <template x-for="record in listP">
+              <tr>
+                <td
+                  style="color: indigo; text-align: center"
+                  x-text="(record*(50+10)).toFixed(10)"
+                ></td>
+              </tr>
+            </template>
+          </table>
+          <table>
+            <tr>
+              <th style="font-weight: bold; text-align: center">- BaseValue</th>
+            </tr>
+            <template x-for="record in listN">
+              <tr>
+                <td
+                  style="color: indigo; text-align: center"
+                  x-text="(record*(50+10)).toFixed(10)"
                 ></td>
               </tr>
             </template>
