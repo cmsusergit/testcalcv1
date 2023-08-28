@@ -39,7 +39,15 @@
         >
           Calculate Value
         </button>
-        <h4 style="margin: 1em auto; text-align: center">
+        <h4
+          style="
+            margin: 1em auto;
+            text-align: center;
+            padding: 0.2em;
+
+            border-top: 2px groove grey;
+          "
+        >
           Base Value: <span x-text="baseValue.toFixed(10)"></span>
         </h4>
         <div style="display: flex; margin: 0 auto">
@@ -70,7 +78,16 @@
             </template>
           </table>
         </div>
-        <h4 style="margin: 1em auto; text-align: center">
+
+        <h4
+          style="
+            margin: 1em auto;
+            text-align: center;
+            padding: 0.2em;
+
+            border-top: 2px groove grey;
+          "
+        >
           Base Value: <span x-text="(baseValue*(50*10)).toFixed(10)"></span>
         </h4>
         <div style="display: flex; margin: 0 auto">
