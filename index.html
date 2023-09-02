@@ -16,108 +16,246 @@
   <style></style>
   <body>
     <main class="container">
-      <div x-data="{ text: '',baseValue:0,offsetValue:0.0,listP:[],listN:[] }">
-        <input
-          type="text"
-          style="padding: 0.4em; border-radius: 0.4em"
-          x-model="text"
-        />
-        <button
-          @click="v1=Number(text);baseValue=v1/(50+10);
-          listP=[];listN=[];
-          let temp1=baseValue;
-          let temp2=baseValue;
-          offsetValue=v1/((40-4)*1000);
-          for(let indx=0;indx<12;indx++){
-            temp1=temp1+offsetValue;
-            temp2=temp2-offsetValue;
-            listP.push(temp1);
-            listN.push(temp2);
-          }
-          "
-          style="padding: 0.4em; border-radius: 0.4em"
-        >
-          Calculate Value
-        </button>
-        <h4
-          style="
-            margin: 1em auto;
-            text-align: center;
-            padding: 0.2em;
-
-            border-top: 2px groove grey;
-          "
-        >
-          Base Value: <span x-text="baseValue.toFixed(10)"></span>
-        </h4>
-        <div style="display: flex; margin: 0 auto">
-          <table>
-            <tr>
-              <th style="font-weight: bold; text-align: center">+ BaseValue</th>
-            </tr>
-            <template x-for="record in listP">
-              <tr>
-                <td
-                  style="color: indigo; text-align: center"
-                  x-text="record.toFixed(10)"
-                ></td>
-              </tr>
-            </template>
-          </table>
-          <table>
-            <tr>
-              <th style="font-weight: bold; text-align: center">- BaseValue</th>
-            </tr>
-            <template x-for="record in listN">
-              <tr>
-                <td
-                  style="color: indigo; text-align: center"
-                  x-text="record.toFixed(10)"
-                ></td>
-              </tr>
-            </template>
-          </table>
+      <div x-data="{ activeTab:0 }">
+        <div style="margin-bottom: 1em; display: flex">
+          <button @click="activeTab=0" style="margin: 0.1em; padding: 0.4em">
+            Calculate 1
+          </button>
+          <button @click="activeTab=1" style="margin: 0.1em; padding: 0.4em">
+            Calculate 2
+          </button>
         </div>
+        <template x-if="activeTab==0">
+          <div
+            x-data="{ text: '',baseValue:0,offsetValue:0.0,listP:[],listN:[] }"
+          >
+            <input
+              type="text"
+              style="padding: 0.4em; border-radius: 0.4em"
+              x-model="text"
+            />
+            <button
+              @click="v1=Number(text);baseValue=v1/(50+10);
+              listP=[];listN=[];
+              let temp1=baseValue;
+              let temp2=baseValue;
+              offsetValue=v1/((40-4)*1000);
+              for(let indx=0;indx<12;indx++){
+                temp1=temp1+offsetValue;
+                temp2=temp2-offsetValue;
+                listP.push(temp1);
+                listN.push(temp2);
+              }
+              "
+              style="padding: 0.4em; border-radius: 0.4em"
+            >
+              Calculate Value
+            </button>
+            <h4
+              style="
+                margin: 1em auto;
+                text-align: center;
+                padding: 0.2em;
 
-        <h4
-          style="
-            margin: 1em auto;
-            text-align: center;
-            padding: 0.2em;
+                border-top: 2px groove grey;
+              "
+            >
+              Base Value: <span x-text="baseValue.toFixed(10)"></span>
+            </h4>
+            <div style="display: flex; margin: 0 auto">
+              <table>
+                <tr>
+                  <th style="font-weight: bold; text-align: center">
+                    + BaseValue
+                  </th>
+                </tr>
+                <template x-for="record in listP">
+                  <tr>
+                    <td
+                      style="color: indigo; text-align: center"
+                      x-text="record.toFixed(10)"
+                    ></td>
+                  </tr>
+                </template>
+              </table>
+              <table>
+                <tr>
+                  <th style="font-weight: bold; text-align: center">
+                    - BaseValue
+                  </th>
+                </tr>
+                <template x-for="record in listN">
+                  <tr>
+                    <td
+                      style="color: indigo; text-align: center"
+                      x-text="record.toFixed(10)"
+                    ></td>
+                  </tr>
+                </template>
+              </table>
+            </div>
 
-            border-top: 2px groove grey;
-          "
-        >
-          Base Value: <span x-text="(baseValue*(50*10)).toFixed(10)"></span>
-        </h4>
-        <div style="display: flex; margin: 0 auto">
-          <table>
-            <tr>
-              <th style="font-weight: bold; text-align: center">+ BaseValue</th>
-            </tr>
-            <template x-for="record in listP">
-              <tr>
-                <td
-                  style="color: indigo; text-align: center"
-                  x-text="(record*(50+10)).toFixed(10)"
-                ></td>
-              </tr>
-            </template>
-          </table>
-          <table>
-            <tr>
-              <th style="font-weight: bold; text-align: center">- BaseValue</th>
-            </tr>
-            <template x-for="record in listN">
-              <tr>
-                <td
-                  style="color: indigo; text-align: center"
-                  x-text="(record*(50+10)).toFixed(10)"
-                ></td>
-              </tr>
-            </template>
-          </table>
-        </div>
+            <h4
+              style="
+                margin: 1em auto;
+                text-align: center;
+                padding: 0.2em;
+
+                border-top: 2px groove grey;
+              "
+            >
+              Base Value: <span x-text="(baseValue*(50*10)).toFixed(10)"></span>
+            </h4>
+            <div style="display: flex; margin: 0 auto">
+              <table>
+                <tr>
+                  <th style="font-weight: bold; text-align: center">
+                    + BaseValue
+                  </th>
+                </tr>
+                <template x-for="record in listP">
+                  <tr>
+                    <td
+                      style="color: indigo; text-align: center"
+                      x-text="(record*(50+10)).toFixed(10)"
+                    ></td>
+                  </tr>
+                </template>
+              </table>
+              <table>
+                <tr>
+                  <th style="font-weight: bold; text-align: center">
+                    - BaseValue
+                  </th>
+                </tr>
+                <template x-for="record in listN">
+                  <tr>
+                    <td
+                      style="color: indigo; text-align: center"
+                      x-text="(record*(50+10)).toFixed(10)"
+                    ></td>
+                  </tr>
+                </template>
+              </table>
+            </div>
+          </div>
+        </template>
+
+        <template x-if="activeTab==1">
+          <div x-data="{ aValue:0,bValue:0,listP:[],listN:[] }">
+            <input
+              type="text"
+              style="padding: 0.4em; border-radius: 0.4em"
+              x-model="aValue"
+            />
+            <input
+              type="text"
+              style="padding: 0.4em; border-radius: 0.4em"
+              x-model="bValue"
+            />
+            <button
+              @click="let v1=Number(aValue);let v2=Number(bValue);
+
+              listP=[];listN=[];
+              for(let indx=0;indx<10;indx++){                
+                let temp1=(v1+v2)/2.0;
+                let temp2=(v1-v2)/2.0;;
+                listP.push(temp1);
+                listN.push(temp2);
+              }
+              "
+              style="padding: 0.4em; border-radius: 0.4em"
+            >
+              Calculate Value
+            </button>
+            <h4
+              style="
+                margin: 1em auto;
+                text-align: center;
+                padding: 0.2em;
+                border-top: 2px groove grey;
+              "
+            >
+              Base Value: <span x-text="Number(aValue).toFixed(10)"></span>
+            </h4>
+            <div style="display: flex; margin: 0 auto">
+              <table>
+                <tr>
+                  <th style="font-weight: bold; text-align: center">
+                    + BaseValue
+                  </th>
+                </tr>
+                <template x-for="record in listP">
+                  <tr>
+                    <td
+                      style="color: indigo; text-align: center"
+                      x-text="record.toFixed(10)"
+                    ></td>
+                  </tr>
+                </template>
+              </table>
+              <table>
+                <tr>
+                  <th style="font-weight: bold; text-align: center">
+                    - BaseValue
+                  </th>
+                </tr>
+                <template x-for="record in listN">
+                  <tr>
+                    <td
+                      style="color: indigo; text-align: center"
+                      x-text="record.toFixed(10)"
+                    ></td>
+                  </tr>
+                </template>
+              </table>
+            </div>
+
+            <h4
+              style="
+                margin: 1em auto;
+                text-align: center;
+                padding: 0.2em;
+
+                border-top: 2px groove grey;
+              "
+            >
+              Base Value: <span x-text="(baseValue*(50*10)).toFixed(10)"></span>
+            </h4>
+            <div style="display: flex; margin: 0 auto">
+              <table>
+                <tr>
+                  <th style="font-weight: bold; text-align: center">
+                    + BaseValue
+                  </th>
+                </tr>
+                <template x-for="record in listP">
+                  <tr>
+                    <td
+                      style="color: indigo; text-align: center"
+                      x-text="(record*(50+10)).toFixed(10)"
+                    ></td>
+                  </tr>
+                </template>
+              </table>
+              <table>
+                <tr>
+                  <th style="font-weight: bold; text-align: center">
+                    - BaseValue
+                  </th>
+                </tr>
+                <template x-for="record in listN">
+                  <tr>
+                    <td
+                      style="color: indigo; text-align: center"
+                      x-text="(record*(50+10)).toFixed(10)"
+                    ></td>
+                  </tr>
+                </template>
+              </table>
+            </div>
+          </div>
+        </template>
       </div>
     </main>
   </body>
